@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: react-notes-app-service
+  namespace: notes-app
+
+spec:
+  selector:
+    app: react-notes-app
+  ports:
+    - protocol: TCP
+      port: 5173
+      targetPort: 5173

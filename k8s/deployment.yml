@@ -1,0 +1,22 @@
+kind: Deployment
+apiVersion: apps/v1
+
+metadata:
+  name: react-notes-app
+  namespace: notes-app
+
+spec: 
+  replicas: 2
+  selector:
+    matchLabels:
+      app: react-notes-app
+  template:
+    metadata:
+      labels:
+        app: react-notes-app
+    spec:
+      containers:
+        - name: react-notes-app
+          image: worlddev162/react-notes-app:latest
+          ports:
+            - containerPort: 5173
