@@ -12,7 +12,7 @@ metadata:
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/argocd-image-updater-git-creds # Configures image updater to write changes back to Git using provided secret
 
     # Update strategy for react-notes-app image
-    argocd-image-updater.argoproj.io/react-notes-app.update-strategy: semver # Uses semantic versioning for image updates
+     argocd-image-updater.argoproj.io/worlddev162.react-notes-app.update-strategy: semver # Uses semantic versioning for image updates
 
 spec:
   project: default
