@@ -1,0 +1,23 @@
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+
+metadata:
+  name: react-app
+  namespace: argocd
+
+spec:
+  project: default
+
+  source:
+    repoURL: 'https://github.com/gajanan43/react_notes_app_Docker_k8s.git'
+    targetRevision: main
+    path: k8s
+
+  destination:  
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
