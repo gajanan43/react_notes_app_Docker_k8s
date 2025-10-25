@@ -1,18 +1,21 @@
-kind: Application
 apiVersion: argoproj.io/v1alpha1
+kind: Application
 
 metadata:
   name: react-app
   namespace: argocd
   annotations:
-    # Assign alias 'react-notes-app' to your image
+    # Define the image alias and actual image name
     argocd-image-updater.argoproj.io/image-list: react-notes-app=worlddev162/react-notes-app
 
-    # Use git write-back method
+    # Use git write-back method for updating the image tag in repo
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/argocd-image-updater-git-creds
 
-    # Update strategy for react-notes-app image
+    # Image update strategy
     argocd-image-updater.argoproj.io/react-notes-app.update-strategy: semver
+
+    # (Recommended) Allow Image Updater to track tags matching semantic versioning
+    argocd-image-updater.argoproj.io/react-notes-app.allow-tags: regexp:^v\d+\.\d+\.\d+$
 
 spec:
   project: default
@@ -22,6 +25,11 @@ spec:
     targetRevision: main
     path: argocd/k8s
 
+    # 👇 This line is **important**
+    # It forces ArgoCD to treat this directory as plain manifests (not kustomize)
+    directory:
+      recurse: true
+
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: notes-app
@@ -30,3 +38,4 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
