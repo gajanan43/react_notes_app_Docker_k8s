@@ -6,13 +6,13 @@ metadata:
   namespace: argocd
   annotations:
     # Assign alias 'react-notes-app' to your image
-    argocd-image-updater.argoproj.io/image-list: worlddev162/react-notes-app # Maps the image alias 'react-notes-app' to your DockerHub image
+    argocd-image-updater.argoproj.io/image-list: react-notes-app=worlddev162/react-notes-app
 
-    # Use git write-back
-    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/argocd-image-updater-git-creds # Configures image updater to write changes back to Git using provided secret
+    # Use git write-back method
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/argocd-image-updater-git-creds
 
     # Update strategy for react-notes-app image
-     argocd-image-updater.argoproj.io/worlddev162.react-notes-app.update-strategy: semver # Uses semantic versioning for image updates
+    argocd-image-updater.argoproj.io/react-notes-app.update-strategy: semver
 
 spec:
   project: default
@@ -22,7 +22,7 @@ spec:
     targetRevision: main
     path: argocd/k8s
 
-  destination:  
+  destination:
     server: 'https://kubernetes.default.svc'
     namespace: default
 
