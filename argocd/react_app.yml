@@ -4,6 +4,15 @@ apiVersion: argoproj.io/v1alpha1
 metadata:
   name: react-app
   namespace: argocd
+  annotations:
+    # Assign alias 'react-notes-app' to your image
+    argocd-image-updater.argoproj.io/image-list: worlddev162/react-notes-app # Maps the image alias 'react-notes-app' to your DockerHub image
+
+    # Use git write-back
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/argocd-image-updater-git-creds # Configures image updater to write changes back to Git using provided secret
+
+    # Update strategy for react-notes-app image
+    argocd-image-updater.argoproj.io/react-notes-app.update-strategy: semver # Uses semantic versioning for image updates
 
 spec:
   project: default

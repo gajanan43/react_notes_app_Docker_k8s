@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: react-notes-app
-          image: worlddev162/react-notes-app:latest
+          image: worlddev162/react-notes-app:v1.0.0
           ports:
             - containerPort: 5173
