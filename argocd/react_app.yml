@@ -17,6 +17,10 @@ metadata:
     # (Recommended) Allow Image Updater to track tags matching semantic versioning
     argocd-image-updater.argoproj.io/react-notes-app.allow-tags: regexp:^v\d+\.\d+\.\d+$
 
+    notifications.argoproj.io/subscribe.on-health-degraded.email: "demo@gmail.com"  # you can add multiple email ids separated by comma like "<receiver@example.com>, <receiver2@example.com>"
+    # Subscribe to notifications when the app is successfully deployed.
+    notifications.argoproj.io/subscribe.on-deployed.email: "demo@gmail.com" # you can add multiple email ids separated by comma like "<receiver@example.com>, <receiver2@example.com>"
+
 spec:
   project: default
 
