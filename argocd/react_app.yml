@@ -24,11 +24,7 @@ spec:
     repoURL: 'https://github.com/gajanan43/react_notes_app_Docker_k8s.git'
     targetRevision: main
     path: argocd/k8s
-
-    # 👇 This line is **important**
-    # It forces ArgoCD to treat this directory as plain manifests (not kustomize)
-    directory:
-      recurse: true
+    kustomize: {}
 
   destination:
     server: 'https://kubernetes.default.svc'
